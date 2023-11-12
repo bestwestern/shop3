@@ -48,7 +48,7 @@ const count = signal(0);
 				{
 					products.map((post) => (
 						<li>
-							<a href={`/product/${post.id}/`}>{`${post.id}`}
+							<a rel="prefetch" href={`/product/${post.id}/`}>{`${post.id}`}
 								
 							</a>
 						</li>

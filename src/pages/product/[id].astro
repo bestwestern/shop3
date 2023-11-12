@@ -16,7 +16,7 @@ const response=await	supabase
 	.select("*").order('id', { ascending: false });
   const {error,data}=response;
   const products=data.map(el=>{
-    return {id:el.id, description: id.description, title: "API Reference"}
+    return {id:el.id, description: el.description}
   })
   const posts = [
     {id: '1', description: "astro", title: "API Reference"},
@@ -33,6 +33,6 @@ const {id} = Astro.params;
 const {product} = Astro.props;
 ---
 <body>
-  <h1>{id}: {product.title}</h1>
+  <h1>{id}</h1>
   <h2>description: {product.description}</h2>
 </body>
