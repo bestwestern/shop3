@@ -4,6 +4,12 @@ import './Counter.css';
 export default function Counter({ children, count }) {
 	const add = () => count.value++;
 	const subtract = () => count.value--;
+	const submit=e=>{
+		console.log(e)
+		e.preventDefault();
+		click()
+
+	}
 const click=()=>{
 	console.log("JKl");
 	fetch('https://api.vercel.com/v1/integrations/deploy/prj_jyfEU9eqOd0BClwPV61JEUt7w9O3/D7JpmwV2Ee',
@@ -13,9 +19,11 @@ const click=()=>{
 console.log("howkjdffsl")
 	return (
 		<>
-			<div class="counter">
-				<button onClick={click}>klik</button>
-			</div>
+<h1>Opret nyt product</h1>
+<form onSubmit={submit}>
+
+			<input type="text" placeholder={"Titel"} />
+</form>
 		</>
 	);
 }
