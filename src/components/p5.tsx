@@ -1,6 +1,11 @@
 import { h, Fragment } from 'preact';
+import { useEffect,useState } from 'preact/hooks';
 
 export default function Component() {
+  const [stockStatus,setStockStatus]=useState(-1);
+  useEffect(()=>{
+setTimeout(()=>setStockStatus(Math.floor(Math.random()*5)))
+  },[])
   return (
     <>
       <div

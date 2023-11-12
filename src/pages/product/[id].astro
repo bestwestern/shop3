@@ -1,0 +1,36 @@
+---
+import { createClient } from "@supabase/supabase-js";
+const supabaseUrl = "https://upabdmzybbgsnbonhgmc.supabase.co";
+  const supabaseKey =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVwYWJkbXp5YmJnc25ib25oZ21jIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODExMjg1NTMsImV4cCI6MTk5NjcwNDU1M30.5TeDInNIPfxKeE_KG4GcUEznh4i9wbKjUek935JSq6Y";
+  const supabase = createClient(
+	"https://upabdmzybbgsnbonhgmc.supabase.co",
+	supabaseKey
+	);
+
+    
+    
+    export async function getStaticPaths() {
+	supabase
+	.from("ord")
+	.select("*").order('id', { ascending: false }).then(({error,data})=>{
+		console.log(data)
+	})
+  const posts = [
+    {id: '1', category: "astro", title: "API Reference"},
+    {id: '2', category: "react", title: "Creating a React Counter!"}
+  ];
+  return posts.map((post) => {
+    return {
+      params: { id: post.id },
+      props: { post }
+    };
+  });
+}
+const {id} = Astro.params;
+const {post} = Astro.props;
+---
+<body>
+  <h1>{id}: {post.title}</h1>
+  <h2>Category: {post.category}</h2>
+</body>
