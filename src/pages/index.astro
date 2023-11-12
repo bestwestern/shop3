@@ -1,13 +1,28 @@
 ---
+import { createClient } from "@supabase/supabase-js";
+
+const supabaseUrl = "https://upabdmzybbgsnbonhgmc.supabase.co";
+      const supabaseKey =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVwYWJkbXp5YmJnc25ib25oZ21jIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODExMjg1NTMsImV4cCI6MTk5NjcwNDU1M30.5TeDInNIPfxKeE_KG4GcUEznh4i9wbKjUek935JSq6Y";
+      
+      
+      const supabase = createClient(
+      "https://upabdmzybbgsnbonhgmc.supabase.co",
+      supabaseKey
+      );
+const response=await	supabase
+	.from("products")
+	.select("*").order('id', { ascending: false });
+	const products=response.data
 // Component Imports
 import Counter from '../components/Counter';
 import { signal } from '@preact/signals';
-import P3 from "../components/p3";
-import P4 from "../components/p4";
-import P6 from "../components/p6";
-import P5 from "../components/p5";
-import P7 from "../components/p7";
-import P8 from "../components/p8";
+// import P3 from "../components/p3";
+// import P4 from "../components/p4";
+// import P6 from "../components/p6";
+// import P5 from "../components/p5";
+// import P7 from "../components/p7";
+// import P8 from "../components/p8";
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
 
@@ -28,5 +43,17 @@ const count = signal(0);
 	</head>
 	<body>
 		<i>forside</>
+			<br/>
+			<ul>
+				{
+					products.map((post) => (
+						<li>
+							<a href={`/product/${post.id}/`}>{`${post.id}`}
+								
+							</a>
+						</li>
+					))
+				}
+			</ul>
 	</body>
 </html>

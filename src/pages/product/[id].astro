@@ -15,15 +15,15 @@ const response=await	supabase
 	.from("products")
 	.select("*").order('id', { ascending: false });
   const {error,data}=response;
-  console.log("data")
+  console.log(data)
   const products=data.map(el=>{
-    return {id:el.ord.toLowerCase(), category: "astro", title: "API Reference"}
+    return {id:el.id, category: "astro", title: "API Reference"}
   })
   const posts = [
     {id: '1', category: "astro", title: "API Reference"},
     {id: '2', category: "react", title: "Creating a React Counter!"}
   ];
-  return posts.map((product) => {
+  return products.map((product) => {
     return {
       params: { id: product.id },
       props: { product }
