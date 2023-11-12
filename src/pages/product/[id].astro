@@ -19,7 +19,6 @@ const response=await	supabase
   const products=data.map(el=>{
     return {id:el.ord.toLowerCase(), category: "astro", title: "API Reference"}
   })
-  console.log(products);
   const posts = [
     {id: '1', category: "astro", title: "API Reference"},
     {id: '2', category: "react", title: "Creating a React Counter!"}
