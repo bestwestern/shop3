@@ -1,36 +1,40 @@
 ---
 import { createClient } from "@supabase/supabase-js";
-const supabaseUrl = "https://upabdmzybbgsnbonhgmc.supabase.co";
-  const supabaseKey =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVwYWJkbXp5YmJnc25ib25oZ21jIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODExMjg1NTMsImV4cCI6MTk5NjcwNDU1M30.5TeDInNIPfxKeE_KG4GcUEznh4i9wbKjUek935JSq6Y";
-  const supabase = createClient(
-	"https://upabdmzybbgsnbonhgmc.supabase.co",
-	supabaseKey
-	);
 
-    
-    
-    export async function getStaticPaths() {
-	supabase
-	.from("ord")
-	.select("*").order('id', { ascending: false }).then(({error,data})=>{
-		console.log(data)
-	})
+  export async function getStaticPaths() {
+    const supabaseUrl = "https://upabdmzybbgsnbonhgmc.supabase.co";
+      const supabaseKey =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVwYWJkbXp5YmJnc25ib25oZ21jIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODExMjg1NTMsImV4cCI6MTk5NjcwNDU1M30.5TeDInNIPfxKeE_KG4GcUEznh4i9wbKjUek935JSq6Y";
+      
+      
+      const supabase = createClient(
+      "https://upabdmzybbgsnbonhgmc.supabase.co",
+      supabaseKey
+      );
+const response=await	supabase
+	.from("products")
+	.select("*").order('id', { ascending: false });
+  const {error,data}=response;
+  console.log(data);
+  const products=data.map(el=>{
+    return {id:el.ord.toLowerCase(), category: "astro", title: "API Reference"}
+  })
+  console.log(products);
   const posts = [
     {id: '1', category: "astro", title: "API Reference"},
     {id: '2', category: "react", title: "Creating a React Counter!"}
   ];
-  return posts.map((post) => {
+  return products.map((product) => {
     return {
-      params: { id: post.id },
-      props: { post }
+      params: { id: product.id },
+      props: { product }
     };
   });
 }
 const {id} = Astro.params;
-const {post} = Astro.props;
+const {product} = Astro.props;
 ---
 <body>
-  <h1>{id}: {post.title}</h1>
-  <h2>Category: {post.category}</h2>
+  <h1>{id}: {product.title}</h1>
+  <h2>Category: {product.category}</h2>
 </body>
