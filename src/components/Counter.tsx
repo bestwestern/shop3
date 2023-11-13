@@ -16,21 +16,23 @@ export default function Counter({ children, count }) {
 	const submit=async e=>{
 		e.preventDefault();
 		const titleInput=document.getElementById("title");
-		const title=titleInput.value.trim();
+		const title=titleInput.value.trim();	
+		const priceInput=document.getElementById("price");
+		const price=Number(priceInput.value.trim())
 		const descriptionInput=document.getElementById("description");
 		const description=descriptionInput.value.trim()
-		if (title.length&&description.length){
+		if (title.length&&description.length&&!isNaN(price)){
 			const id=title.toLowerCase().replaceAll(" ","_");
-const { data, error } = await supabase
-.from('products')
-.insert([
-  { id,title, description },
-])
-.select()
-if (!error)
-fetch('https://api.vercel.com/v1/integrations/deploy/prj_jyfEU9eqOd0BClwPV61JEUt7w9O3/D7JpmwV2Ee',
-	 { method: 'POST', headers: { 'Content-Type': 'application/json' }, 
-	 body: JSON. stringify({ name: 'John', email: 'john@example.com' }) }).then(response => alert("Produkt tilføjet. URL konstrueres - vent et minut"));
+// const { data, error } = await supabase
+// .from('products')
+// .insert([
+//   { id,title, description },
+// ])
+// .select()
+// if (!error)
+// fetch('https://api.vercel.com/v1/integrations/deploy/prj_jyfEU9eqOd0BClwPV61JEUt7w9O3/D7JpmwV2Ee',
+// 	 { method: 'POST', headers: { 'Content-Type': 'application/json' }, 
+// 	 body: JSON. stringify({ name: 'John', email: 'john@example.com' }) }).then(response => alert("Produkt tilføjet. URL konstrueres - vent et minut"));
 		
 titleInput.value=""
 descriptionInput.value=""
@@ -51,9 +53,18 @@ const click=()=>{
 		<>
 <h1>Opret nyt product</h1>
 <form onSubmit={submit}>
-
-<input type="text" id="title" placeholder={"Titel"} />
-			<input type="text" id="description" placeholder={"Description"} />
+<strong>Navn</strong>
+<br/>
+<input type="text" id="title"  />
+<br/>
+<strong >Beskrivelse</strong>
+<br/>
+			<textarea rows={5} id="description"  />
+<br/>
+<strong>Pris</strong>
+<br/>
+<input type="text" id="price" />
+	
 			<button type="submit">Tilføj</button>
 </form>
 		</>
