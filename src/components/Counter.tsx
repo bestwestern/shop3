@@ -19,7 +19,6 @@ export default function Counter({ children, count }) {
 		const title=titleInput.value.trim();
 		const descriptionInput=document.getElementById("description");
 		const description=descriptionInput.value.trim()
-		console.log(title);
 		if (title.length&&description.length){
 			const id=title.toLowerCase().replaceAll(" ","_");
 const { data, error } = await supabase
