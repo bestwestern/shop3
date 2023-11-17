@@ -4,9 +4,11 @@ import { useEffect,useState } from 'preact/hooks';
 export default function Component({title,price}) {
   const [stockStatus,setStockStatus]=useState(-1);
   useEffect(()=>{
-setTimeout(()=>
-setStockStatus(10*Math.floor(Math.random()*3))
-  ,1000),[]})
+setTimeout(function(){
+
+  setStockStatus(10*Math.floor(Math.random()*3))},1000)
+
+},[])
   return (
     <>
       <div
