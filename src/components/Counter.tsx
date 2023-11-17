@@ -23,19 +23,20 @@ export default function Counter({ children, count }) {
 		const description=descriptionInput.value.trim()
 		if (title.length&&description.length&&!isNaN(price)){
 			const id=title.toLowerCase().replaceAll(" ","_");
-// const { data, error } = await supabase
-// .from('products')
-// .insert([
-//   { id,title, description },
-// ])
-// .select()
-// if (!error)
-// fetch('https://api.vercel.com/v1/integrations/deploy/prj_jyfEU9eqOd0BClwPV61JEUt7w9O3/D7JpmwV2Ee',
-// 	 { method: 'POST', headers: { 'Content-Type': 'application/json' }, 
-// 	 body: JSON. stringify({ name: 'John', email: 'john@example.com' }) }).then(response => alert("Produkt tilføjet. URL konstrueres - vent et minut"));
+const { data, error } = await supabase
+.from('products')
+.insert([
+  { id,title, description,price },
+])
+.select()
+if (!error)
+fetch('https://api.vercel.com/v1/integrations/deploy/prj_jyfEU9eqOd0BClwPV61JEUt7w9O3/D7JpmwV2Ee',
+	 { method: 'POST', headers: { 'Content-Type': 'application/json' }, 
+	 body: JSON. stringify({ name: 'John', email: 'john@example.com' }) }).then(response => alert("Produkt tilføjet. URL konstrueres - vent et minut"));
 		
 titleInput.value=""
 descriptionInput.value=""
+priceInput.value="";
 		}
 		else{
 			alert ("Mangler data")
@@ -63,7 +64,7 @@ const click=()=>{
 <br/>
 <strong>Pris</strong>
 <br/>
-<input type="text" id="price" />
+<input type="number" id="price" />
 	
 			<button type="submit">Tilføj</button>
 </form>

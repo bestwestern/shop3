@@ -1,11 +1,12 @@
 import { h, Fragment } from 'preact';
 import { useEffect,useState } from 'preact/hooks';
 
-export default function Component() {
+export default function Component({title,price}) {
   const [stockStatus,setStockStatus]=useState(-1);
   useEffect(()=>{
-setTimeout(()=>setStockStatus(Math.floor(Math.random()*5)))
-  },[])
+setTimeout(()=>
+setStockStatus(10*Math.floor(Math.random()*3))
+  ,1000),[]})
   return (
     <>
       <div
@@ -350,7 +351,7 @@ setTimeout(()=>setStockStatus(Math.floor(Math.random()*5)))
                   fontWeight: 600,
                 }}
               >
-                COCO MADEMOISELLE
+                {title}
               </span>
               <span
                 className="Text__TextElement-sc-1xtks91-0 hxWDYV Title__StyledText-sc-1wlbk8k-0 hKEwgX ChanelPageTitleNameRenderer__Title-sc-683sl9-3 evDCqQ"
@@ -387,7 +388,7 @@ setTimeout(()=>setStockStatus(Math.floor(Math.random()*5)))
                   fontWeight: 600,
                 }}
               >
-                954,95 kr.
+               {price+"  kr."}
               </span>
             </div>
             <span
@@ -709,11 +710,11 @@ setTimeout(()=>setStockStatus(Math.floor(Math.random()*5)))
                       fontWeight: 700,
                     }}
                   >
-                    På lager
+             {stockStatus===-1?"Tjekker lagerstatus":(stockStatus===0?"":     "På lager ") }
                   </b>{" "}
-                  i 132 butikker -{" "}
+             {stockStatus===-1?"":(stockStatus===0?"Ej på lager":     "i "+stockStatus+" butikker ") }
                 </span>
-                <button
+             {stockStatus>0&&   <button
                   className="uaEventButton__Button-sc-4u97dg-0 iMFaGj defaultButton__Button-sc-fckn3d-0 zqQqP storeStock__StyledDefaultButton-sc-1pcwh-1 ekkhJe"
                   style={{
                     boxSizing: "inherit",
@@ -736,7 +737,7 @@ setTimeout(()=>setStockStatus(Math.floor(Math.random()*5)))
                   }}
                 >
                   se hvilke
-                </button>
+                </button>}
                 <span style={{ boxSizing: "inherit" }} />
               </div>
             </div>
