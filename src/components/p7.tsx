@@ -1,6 +1,6 @@
 import { h, Fragment } from 'preact';
 
-export default function Component() {
+export default function Component({description}) {
   return (
     <>
       <div
@@ -171,9 +171,7 @@ export default function Component() {
                         style={{ boxSizing: "inherit", marginBottom: "16px" }}
                       >
                         <div style={{ boxSizing: "inherit" }}>
-                          Essencen af en fri og modig kvinde. En orientalsk
-                          feminin duft med en stærk karakter, som dog er
-                          overraskende frisk.
+                        {description}
                         </div>
                       </div>
                     </div>
