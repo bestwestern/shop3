@@ -40,11 +40,10 @@ const {id} = Astro.params;
 const {product} = Astro.props;
 ---
 <body>
-  <img src="/images/p.avif" alt="A bird."> <P4></P4>
+  <P4></P4>
    <P3></P3>
    <P6></P6>
    <P5 title={product.title} price={product.price} client:visible>
-  	<h1>Hello, Preact 1!</h1>
   </P5>
    <P7 description={product.description}></P7>
 
