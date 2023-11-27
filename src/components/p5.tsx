@@ -1,7 +1,7 @@
 import { h, Fragment } from 'preact';
 import { useEffect,useState } from 'preact/hooks';
 
-export default function Component({title,price}) {
+export default function Component({children,title,price}) {
   const [stockStatus,setStockStatus]=useState(-1);
   useEffect(()=>{
 setTimeout(function(){
@@ -215,6 +215,7 @@ setTimeout(function(){
                     cursor: "pointer",
                   }}
                 />
+                {children}
               </li>
               <li
                 className="GalleryImageItem__PreviewItem-sc-1hzqq5d-1 fWAULu"

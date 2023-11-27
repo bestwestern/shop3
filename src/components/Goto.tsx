@@ -1,16 +1,17 @@
 import { h, Fragment } from 'preact';
 import{ useEffect, useState } from "preact/hooks";
-
+import { signal } from '@preact/signals';
+const url=signal("ffs")
 export default function GoUrl() {
-  const [url, seturl] = useState("");
   const [goTime, setGoTime] = useState(-1);
-  const [time, setTime] = useState(0);
-  setTimeout(() => {
-    const timer = setInterval(function () {
-      const newTime = new Date().getTime();
-      setTime(newTime);
-    }, 50);
-  }, []);
+  const [time, setTime] = useState(new Date().getTime());
+  useEffect(()=> {
+const st=()=>{
+  setTime(new Date().getTime())
+}
+      const timer = setInterval(st, 1950);
+   
+  },[])
   if (!time) return <i>...</i>;
   const timeString = new Date(time).toLocaleTimeString();
   const gotoTime = Math.ceil(time / 60000) * 60000;
@@ -34,7 +35,7 @@ export default function GoUrl() {
             <input
               value={url}
               placeholder="url"
-              onChange={(e) => seturl(e.target.value)}
+              onChange={(e) => url.value=(e.target.value)}
               className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
               id="inline-full-name"
               type="text"
