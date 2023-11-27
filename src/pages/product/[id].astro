@@ -1,5 +1,7 @@
 ---
 import { createClient } from "@supabase/supabase-js";
+import { Image } from 'astro:assets';
+import pImage from '../../p.avif';
 import P3 from "../../components/p3";
 import P4 from "../../components/p4";
 import P6 from "../../components/p6";
@@ -38,6 +40,8 @@ const {id} = Astro.params;
 const {product} = Astro.props;
 ---
 <body>
+  <Image src={pImage} alt="A bird sitting on a nest of eggs."/>
+  <Image src="../../p.avif" alt="A2 bird sitting on a nest of eggs."/>
    <P4></P4>
    <P3></P3>
    <P6></P6>
